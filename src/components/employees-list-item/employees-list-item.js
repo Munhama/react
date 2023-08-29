@@ -12,23 +12,22 @@ class EmployeesListItem extends Component {
   }
 
   onIncrease = () => {
-    this.setState(({increase}) => ({
-      increase: !increase
-    }))
-  }
+    this.setState(({ increase }) => ({
+      increase: !increase,
+    }));
+  };
 
   onLike = () => {
-    this.setState(({like}) => ({
-      like: !like
-    }))
-  }
+    this.setState(({ like }) => ({
+      like: !like,
+    }));
+  };
 
   render() {
-    const { name, salary } = this.props;
+    const { name, salary, onDelete } = this.props;
     const { increase, like } = this.state;
 
-    let listItemStyle =
-      "list-group-item d-flex justify-content-between";
+    let listItemStyle = "list-group-item d-flex justify-content-between";
     const increaseStyle = "increase";
     const likeStyle = "like";
 
@@ -41,7 +40,9 @@ class EmployeesListItem extends Component {
 
     return (
       <li className={listItemStyle}>
-        <span className="list-group-item-label" onClick={this.onLike}>{name}</span>
+        <span className="list-group-item-label" onClick={this.onLike}>
+          {name}
+        </span>
         <input
           type="text"
           className="list-group-item-input"
@@ -56,7 +57,11 @@ class EmployeesListItem extends Component {
             <i className="fas fa-cookie"></i>
           </button>
 
-          <button type="button" className="btn-trash btn-sm ">
+          <button
+            type="button"
+            className="btn-trash btn-sm "
+            onClick={onDelete}
+          >
             <i className="fas fa-trash"></i>
           </button>
           <i className="fas fa-star"></i>
